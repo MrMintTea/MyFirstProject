@@ -2,13 +2,13 @@ import pygame
 import math
 import random
 
-# setup display
+# Устанавливаем дисплей
 pygame.init()
 WIDTH, HEIGHT = 800, 500
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Игра Hangman!")
 
-# button variables
+# Кнопки с переменными
 RADIUS = 20
 GAP = 15
 letters = []
@@ -20,24 +20,24 @@ for i in range(26):
     y = starty + ((i // 13) * (GAP + RADIUS * 2))
     letters.append([x, y, chr(A + i), True])
 
-# fonts
+# Шрифты
 LETTER_FONT = pygame.font.SysFont('comicsans', 40)
 WORD_FONT = pygame.font.SysFont('comicsans', 60)
 TITLE_FONT = pygame.font.SysFont('comicsans', 70)
 
-# load images.
+# Изображения
 images = []
 for i in range(7):
     image = pygame.image.load("hangman" + str(i) + ".png")
     images.append(image)
 
-# game variables
+# Игровые переменные
 hangman_status = 0
 words = ["IDE", "LOL", "PYTHON", "PYGAME", "LOSER", "WINNER"]
 word = random.choice(words)
 guessed = []
 
-# colors
+# Цвета
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
@@ -45,11 +45,11 @@ BLACK = (0, 0, 0)
 def draw():
     win.fill(WHITE)
 
-    # draw title
+    # Текст заголовка
     text = TITLE_FONT.render("DEVELOPER HANGMAN", 1, BLACK)
     win.blit(text, (WIDTH / 2 - text.get_width() / 2, 20))
 
-    # draw word
+    # Слова
     display_word = ""
     for letter in word:
         if letter in guessed:
@@ -59,7 +59,7 @@ def draw():
     text = WORD_FONT.render(display_word, 1, BLACK)
     win.blit(text, (400, 200))
 
-    # draw buttons
+    # Кнопки
     for letter in letters:
         x, y, ltr, visible = letter
         if visible:
